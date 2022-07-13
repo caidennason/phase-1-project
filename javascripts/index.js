@@ -197,7 +197,7 @@ document.addEventListener("DOMContentLoaded", (e) => {
   homePageLinkEvent()
   ownedBooksLinkEvent()
   wantedBooksLinkEvent()
-  fetchBookData()
+//   fetchBookData()
   likedBooksLinkEvent()
   })
 
