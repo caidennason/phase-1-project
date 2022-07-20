@@ -2,19 +2,16 @@
 // How do I get what is being searched for at the end of the link? String interpolation?
 // ex: `http://openlibrary.org/search.json?${searchTerm}`
 // want to get whatever is searched to then go to the table above it
+// What do I want to have on the page? Book cover on top, author name below or to the right, and book title beneath author
+// Button to save to your list of books
+// .map that adds a button to each book that shows up, include event listener that submits that object to your list
+// create a new table when you click the like button by the book you like         \
+                                                                            //  ===> a function should do this
+// create a new table when you click the dislike button by the book you dislike   /
+
 
 
 // Globals //
-
-// Fetch //
-
-const fetchBookData = () => {
-    fetch('http://openlibrary.org/search.json?author=mark+lewisohn')
-    .then(resp => resp.json())
-    .then(books => {
-        console.log(books.docs)
-    })
-}
 
 // Node Getters //
 
@@ -34,132 +31,176 @@ const homePageTemplate = () => {
 
 const ownedBooksPageTemplate = () => {
     return `
-    <h1>Books I've Read</h1>
-              <table class="highlight">
-                <thead>
-                  <tr>
-                      <th>Title</th>
-                      <th>Author</th>
-                      <th>Month Finished</th>
-                      <th>Like or Dislike</th>
-                  </tr>
-                </thead>
-        
-                <tbody>
-                  <tr>
-                    <td>Tune In</td>
-                    <td>Liverpool Guy</td>
-                    <td>n/a</td>
-                    <td>Like</td>
-                  </tr>
-                  <tr>
-                    <td>The Mist</td>
-                    <td>Stephen King</td>
-                    <td>July</td>
-                    <td>Like</td>
-                  </tr>
-                  <tr>
-                    <td>Dopesick</td>
-                    <td>?</td>
-                    <td>January</td>
-                    <td>Like</td>
-                  </tr>
-                </tbody>
-              </table>
-              <h1 style='font-size:25px'>Search for the books you have read so far here</h1>
-              <form>
-                <div class="input-field">
-                    <input id="title" type="text" class="validate">
-                    <label for="title">Title</label>
-                  </div>
-                  <div class="input-field">
-                    <input id="author" type="text" class="validate">
-                    <label for="author">Author</label>
-                  </div>
-              </form>
-              <button id="owned-books-submit-button" class="btn waves-effect waves-light" type="submit" name="action">Submit
-            </button>
+    <h1>Books I have read this year</h1>
     `
 }
 
 const wantedBooksPageTemplate = () => {
     return `
-    <h1>Books I've Read</h1>
-              <table class="highlight">
-                <thead>
-                  <tr>
-                      <th>Title</th>
-                      <th>Author</th>
-                      <th>Month Finished</th>
-                      <th>Like or Dislike</th>
-                  </tr>
-                </thead>
-        
-                <tbody>
-                  <tr>
-                    <td>Test</td>
-                    <td>Test</td>
-                    <td>Test</td>
-                    <td>Test</td>
-                  </tr>
-                  <tr>
-                    <td>Test</td>
-                    <td>Test</td>
-                    <td>Test</td>
-                    <td>Test</td>
-                  </tr>
-                  <tr>
-                    <td>Test</td>
-                    <td>Test</td>
-                    <td>Test</td>
-                    <td>Test</td>
-                  </tr>
-                </tbody>
-              </table>
+    <h1>Books I Want to Read</h1>
+              
               <h1 style='font-size:25px'>Search for the books you want to read here</h1>
-              <form>
-                <div class="input-field">
-                    <input id="title" type="text" class="validate">
-                    <label for="title">Title</label>
-                  </div>
-                  <div class="input-field">
-                    <input id="author" type="text" class="validate">
-                    <label for="author">Author</label>
-                  </div>
-              </form>
-              <button id="wanted-books-submit-button" class="btn waves-effect waves-light" type="submit" name="action">Submit
-              </button>
     `
 }
 
 const likedBooksTemplate = () => {
     return `<h1>Get the books you liked to go here</h1>`
 }
+
 // Renderers // 
 
 const renderHomePage = () => {
     mainDiv().innerHTML = homePageTemplate()
     const p = document.createElement('p')
     p.innerText = 'Track all the books you have read and want to read in 2022.'
-    p.classList = 'left-align'
-    const li = document.createElement('li')
-    li.innerText = 'Darwin and Winoa are so dang cute'
-    li.classList = 'center-align'
+    p.classList = 'center-align'
+    const p2 = document.createElement('p')
+    p2.innerText = 'Here\'s a way to track the books you\'ve read this year'
+    p2.classList = 'center-align'
     mainDiv().appendChild(p)
-    mainDiv().appendChild(li)
+    mainDiv().appendChild(p2)
 }
 
 const renderOwnedBooksPage = () => {
     mainDiv().innerHTML = ownedBooksPageTemplate()
+    const pTag = document.createElement('p')
+    const form = document.createElement('form')
+    form.innerHTML = `<form><div class="input-field">
+    <input id="title" type="text">
+    <label for="title">Title</label>
+
+  <div class="input-field">
+    <input id="author" type="text" >
+    <label for="author">Author</label>
+    <button type="submit">Submit</button>
+  </form>
+  `
+    form.addEventListener('submit', (e) => {
+        e.preventDefault()
+        let test = e.target[0].value
+        let testTwo = test.split(" ")
+        let titleBarInput = testTwo.join("+")
+        let first = e.target[1].value
+        let firstTwo = first.split(" ")
+        let authorBarInput = firstTwo.join("+")
+        fetch(`http://openlibrary.org/search.json?author=${authorBarInput}&title=${titleBarInput}`)
+        .then(resp => resp.json())
+        .then(resp => {
+            resp.docs.map(doc => {
+                const h2 = document.createElement('h2')
+                h2.textContent = doc.title 
+                const li = document.createElement('li')
+                li.textContent = doc.author_name[0]
+                const a = document.createElement('a')
+                a.href = ('https://openlibrary.org' + doc.key + '/' + doc.title)
+                a.textContent = `Link to ${doc.title}`
+                const btn = document.createElement('btn')
+                btn.innerHTML = '<button type="submit" style="background-color:cyan;color=black;float="right">Submit</button>'
+                btn.addEventListener('click', (e) => {
+                    e.preventDefault()
+                    const heartButton = document.createElement('btn')
+                    heartButton.innerHTML = '<i class="large material-icons" style="font-size:small">favorite_border</i>'
+                    heartButton.addEventListener('click', (e) => {
+                      e.preventDefault()
+                      if (heartButton.innerHTML == '<i class="large material-icons" style="font-size:small">favorite_border</i>'){
+                        heartButton.innerHTML = '<i class="large material-icons" style="font-size:small;color:orange">favorite</i>'
+                      } else {
+                        heartButton.innerHTML = '<i class="large material-icons" style="font-size:small">favorite_border</i>'
+                      }
+                    })
+                    const pTest = document.createElement('li')
+                    pTest.innerText = (`${doc.title} by ${doc.author_name}`)
+                    pTag.append(pTest)
+                    pTag.append(heartButton)
+                })
+                console.log(doc)
+                mainDiv().appendChild(h2)
+                mainDiv().appendChild(li)
+                mainDiv().appendChild(a)
+                mainDiv().appendChild(btn)
+            })
+        })
+    })
+    mainDiv().appendChild(pTag)
+    mainDiv().appendChild(form)
 }
 
 const renderWantedBooksPage = () => {
     mainDiv().innerHTML = wantedBooksPageTemplate()
+    const pTag = document.createElement('p')
+    const form = document.createElement('form')
+    form.innerHTML = `<form><div class="input-field">
+    <input id="title" type="text">
+    <label for="title">Title</label>
+
+  <div class="input-field">
+    <input id="author" type="text" >
+    <label for="author">Author</label>
+    <button type="submit">Submit</button>
+  </form>
+  `
+    form.addEventListener('submit', (e) => {
+        e.preventDefault()
+        let first = e.target[1].value
+        let firstTwo = first.split(" ")
+        let authorBarInput = firstTwo.join("+")
+        let test = e.target[0].value
+        let testOne = test.split(" ")
+        let titleBarInput = testOne.join("+")
+        fetch(`http://openlibrary.org/search.json?author=${authorBarInput}&title=${titleBarInput}`)
+        .then(resp => resp.json())
+        .then(resp => {
+            resp.docs.map(doc => {
+                const h2 = document.createElement('h2')
+                h2.textContent = doc.title 
+                const li = document.createElement('li')
+                li.textContent = doc.author_name[0]
+                const a = document.createElement('a')
+                a.href = ('https://openlibrary.org' + doc.key + '/' + doc.title)
+                a.textContent = `Link to ${doc.title}`
+                const btn = document.createElement('btn')
+                btn.innerHTML = '<button type="submit" style="background-color:cyan;color=black;float="right">Submit</button>'
+                btn.addEventListener('click', (e) => {
+                    e.preventDefault()
+                    const heartButton = document.createElement('btn')
+                    heartButton.innerHTML = '<i class="large material-icons" style="font-size:small">favorite_border</i>'
+                    heartButton.addEventListener('click', (e) => {
+                      e.preventDefault()
+                      if (heartButton.innerHTML == '<i class="large material-icons" style="font-size:small">favorite_border</i>'){
+                        heartButton.innerHTML = '<i class="large material-icons" style="font-size:small;color:orange">favorite</i>'
+                      } else {
+                        heartButton.innerHTML = '<i class="large material-icons" style="font-size:small">favorite_border</i>'
+                      }
+                    })
+                    const removeButton = document.createElement('btn')
+                    removeButton.innerHTML = '<i class="large material-icons" style="font-size:small">delete</i>'
+                    removeButton.addEventListener('click', (e) => {
+                      e.preventDefault()
+                      console.log(e.target.parentElement)
+                      debugger
+                      e.target.parentElement.remove()
+                    })
+                    const bookInformationLine = document.createElement('li')
+                    bookInformationLine.innerText = `${doc.title} by ${doc.author_name}`
+                    pTag.append(bookInformationLine)
+                    bookInformationLine.appendChild(heartButton)
+                    bookInformationLine.appendChild(removeButton)
+                })
+                mainDiv().appendChild(h2)
+                mainDiv().appendChild(li)
+                mainDiv().appendChild(a)
+                mainDiv().appendChild(btn)
+            })
+        })
+    })
+    mainDiv().append(pTag)
+    mainDiv().appendChild(form)
 }
 
 const renderLikedBooksPage = () => {
     mainDiv().innerHTML = likedBooksTemplate()
 }
+
 // Events //
 
 const homePageLinkEvent = () => {
@@ -197,7 +238,6 @@ document.addEventListener("DOMContentLoaded", (e) => {
   homePageLinkEvent()
   ownedBooksLinkEvent()
   wantedBooksLinkEvent()
-//   fetchBookData()
   likedBooksLinkEvent()
   })
 
