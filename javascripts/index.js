@@ -108,10 +108,17 @@ const renderOwnedBooksPage = () => {
                         heartButton.innerHTML = '<i class="large material-icons" style="font-size:small">favorite_border</i>'
                       }
                     })
+                    const removeButton = document.createElement('btn')
+                    removeButton.innerHTML = '<i class="large material-icons" style="font-size:small">delete</i>'
+                    removeButton.addEventListener('click', (e) => {
+                      e.preventDefault()
+                      console.log(e.target.parentElement.parentElement)
+                      e.target.parentElement.parentElement.remove()
+                    })
                     const pTest = document.createElement('li')
                     pTest.innerText = (`${doc.title} by ${doc.author_name}`)
                     pTag.append(pTest)
-                    pTag.append(heartButton)
+                    pTest.append(heartButton, removeButton)
                 })
                 console.log(doc)
                 mainDiv().appendChild(h2)
@@ -176,9 +183,8 @@ const renderWantedBooksPage = () => {
                     removeButton.innerHTML = '<i class="large material-icons" style="font-size:small">delete</i>'
                     removeButton.addEventListener('click', (e) => {
                       e.preventDefault()
-                      console.log(e.target.parentElement)
-                      debugger
-                      e.target.parentElement.remove()
+                      console.log(e.target.parentElement.parentElement)
+                      e.target.parentElement.parentElement.remove()
                     })
                     const bookInformationLine = document.createElement('li')
                     bookInformationLine.innerText = `${doc.title} by ${doc.author_name}`
