@@ -28,7 +28,7 @@ const homePageTemplate = () => {
 
 const ownedBooksPageTemplate = () => {
     return `
-    <h1>Books I have read this year</h1>
+    <h1>Books I've Read this Year</h1>
     `
 }
 
@@ -300,6 +300,6 @@ document.addEventListener("DOMContentLoaded", (e) => {
   homePageLinkEvent()
   ownedBooksLinkEvent()
   wantedBooksLinkEvent()
-  likedBooksLinkEvent()
+  //likedBooksLinkEvent()
   })
 

@@ -16,7 +16,10 @@
         * A user can like the book (click)
         * A user can mark whether or not they own the book (click)
         * A user can comment on the book they read (submit)
+        * A user can comment on the book they want to read (submit)
         * A user can delete the book (click)
+        * A user can delete the books they've searched (click)
+        * A user can hover over the link of the book they searched and see the webpage (mouseover)
 
 ### Step 4: Come up with an MVP (This should be the minimum to pass the project -- the essentials)
 
