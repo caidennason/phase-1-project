@@ -29,6 +29,8 @@ const homePageTemplate = () => {
 const ownedBooksPageTemplate = () => {
     return `
     <h1>Books I've Read this Year</h1>
+
+    <h1 style='font-size:25px'>Search for the Books You've Read Here</h1>
     `
 }
 
@@ -36,7 +38,7 @@ const wantedBooksPageTemplate = () => {
     return `
     <h1>Books I Want to Read this Year</h1>
               
-              <h1 style='font-size:25px'>Search for the books you want to read here</h1>
+              <h1 style='font-size:25px'>Search for the Books You Want to Read Here</h1>
     `
 }
 
