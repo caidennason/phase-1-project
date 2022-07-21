@@ -5,9 +5,6 @@
 // What do I want to have on the page? Book cover on top, author name below or to the right, and book title beneath author
 // Button to save to your list of books
 // .map that adds a button to each book that shows up, include event listener that submits that object to your list
-// create a new table when you click the like button by the book you like         \
-                                                                            //  ===> a function should do this
-// create a new table when you click the dislike button by the book you dislike   /
 
 
 
@@ -94,6 +91,13 @@ const renderOwnedBooksPage = () => {
                 const a = document.createElement('a')
                 a.href = ('https://openlibrary.org' + doc.key + '/' + doc.title)
                 a.textContent = `Link to ${doc.title}`
+
+                //TESTING 
+                const removeBook = document.createElement('btn')
+                removeBook.innerHTML = '<i class="large material-icons" style="font-size:small">delete</i>'
+                
+                //TESTING
+
                 const btn = document.createElement('btn')
                 btn.innerHTML = '<button type="submit" style="background-color:cyan;color=black;float="right">Submit</button>'
                 btn.addEventListener('click', (e) => {
@@ -115,13 +119,25 @@ const renderOwnedBooksPage = () => {
                       e.target.parentElement.parentElement.remove()
                     })
                     const commentBar = document.createElement('form')
-                    commentBar.innerHTML = '<form><div class="input-field"><input id="title" type="text"><label for="title">Comments</label></form>'
-                    commentButton = document.createElement('btn')
-                    commentButton.innerHTML = '<i class="large material-icons" style="font-size:small">insert_comment</i>'
+                    commentBar.innerHTML = `
+                      <div class="input-field">
+                      <input id="author" type="text" >
+                      <label for="author">Comment</label>
+                      <button type="submit">Submit</button>
+                    </form>
+                  </div>
+                    `
+                    const bookComment = document.createElement('p')
+
+                    commentBar.addEventListener('submit', (e) => {
+                      bookComment.textContent = (e.target[0].value)
+                      commentBar.remove()
+                    })
                     const pTest = document.createElement('li')
                     pTest.innerText = (`${doc.title} by ${doc.author_name}`)
                     pTag.append(pTest)
-                    pTest.append(heartButton, commentButton, removeButton)
+                    pTest.append(heartButton, removeButton)
+                    pTest.append(bookComment)
                     pTest.append(commentBar)
                 })
                 console.log(doc)
@@ -129,6 +145,7 @@ const renderOwnedBooksPage = () => {
                 mainDiv().appendChild(li)
                 mainDiv().appendChild(a)
                 mainDiv().appendChild(btn)
+                mainDiv().appendChild(removeBook)
             })
         })
     })
