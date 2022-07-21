@@ -34,7 +34,7 @@ const ownedBooksPageTemplate = () => {
 
 const wantedBooksPageTemplate = () => {
     return `
-    <h1>Books I Want to Read</h1>
+    <h1>Books I Want to Read this Year</h1>
               
               <h1 style='font-size:25px'>Search for the books you want to read here</h1>
     `
