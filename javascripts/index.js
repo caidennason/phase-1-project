@@ -6,8 +6,6 @@
 // Button to save to your list of books
 // .map that adds a button to each book that shows up, include event listener that submits that object to your list
 
-
-
 // Globals //
 
 // Node Getters //
@@ -211,13 +209,13 @@ const renderWantedBooksPage = () => {
                 btn.addEventListener('click', (e) => {
                     e.preventDefault()
                     const heartButton = document.createElement('btn')
-                    heartButton.innerHTML = '<i class="large material-icons" style="font-size:small">favorite_border</i>'
+                    heartButton.innerHTML = '<i class="large material-icons" style="font-size:small">check_box_outline_blank</i>'
                     heartButton.addEventListener('click', (e) => {
                       e.preventDefault()
-                      if (heartButton.innerHTML == '<i class="large material-icons" style="font-size:small">favorite_border</i>'){
-                        heartButton.innerHTML = '<i class="large material-icons" style="font-size:small;color:orange">favorite</i>'
+                      if (heartButton.innerHTML == '<i class="large material-icons" style="font-size:small">check_box_outline_blank</i>'){
+                        heartButton.innerHTML = '<i class="large material-icons" style="font-size:small;color:orange">check_box</i>'
                       } else {
-                        heartButton.innerHTML = '<i class="large material-icons" style="font-size:small">favorite_border</i>'
+                        heartButton.innerHTML = '<i class="large material-icons" style="font-size:small">check_box_outline_blank</i>'
                       }
                     })
                     const removeButton = document.createElement('btn')
