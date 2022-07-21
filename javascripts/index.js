@@ -112,13 +112,17 @@ const renderOwnedBooksPage = () => {
                     removeButton.innerHTML = '<i class="large material-icons" style="font-size:small">delete</i>'
                     removeButton.addEventListener('click', (e) => {
                       e.preventDefault()
-                      console.log(e.target.parentElement.parentElement)
                       e.target.parentElement.parentElement.remove()
                     })
+                    const commentBar = document.createElement('form')
+                    commentBar.innerHTML = '<form><div class="input-field"><input id="title" type="text"><label for="title">Comments</label></form>'
+                    commentButton = document.createElement('btn')
+                    commentButton.innerHTML = '<i class="large material-icons" style="font-size:small">insert_comment</i>'
                     const pTest = document.createElement('li')
                     pTest.innerText = (`${doc.title} by ${doc.author_name}`)
                     pTag.append(pTest)
-                    pTest.append(heartButton, removeButton)
+                    pTest.append(heartButton, commentButton, removeButton)
+                    pTest.append(commentBar)
                 })
                 console.log(doc)
                 mainDiv().appendChild(h2)

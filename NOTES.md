@@ -14,11 +14,9 @@
         * Form to list books (submit)
         * List out books (DOMContentLoaded)
         * A user can like the book (click)
-        * A user can dislike the book (click)
         * A user can mark whether or not they own the book (click)
         * A user can comment on the book they read (submit)
         * A user can delete the book (click)
-        * A user can search their books (submit)
 
 ### Step 4: Come up with an MVP (This should be the minimum to pass the project -- the essentials)
 
@@ -26,7 +24,6 @@
     * Form to submit book author
     * Form to submit month finished
     * Buttons to like or dislike book
-    * Search bar for book
     * Button to delete book
 
 ### Step 5: Listing out your stretch goals
@@ -47,6 +44,3 @@
     * At what time can I do this event?
     * What's going to trigger this event?
     * What is the effect of the event?
-    
-
-    test
