@@ -60,7 +60,7 @@ const renderHomePage = () => {
 
 const renderOwnedBooksPage = () => {
     mainDiv().innerHTML = ownedBooksPageTemplate()
-    const searchP = document.createElement('p')
+
     const pTag = document.createElement('p')
     const form = document.createElement('form')
     form.innerHTML = `<form><div class="input-field">
@@ -92,8 +92,6 @@ const renderOwnedBooksPage = () => {
                 const a = document.createElement('a')
                 a.href = ('https://openlibrary.org' + doc.key + '/' + doc.title)
                 a.textContent = `Link to ${doc.title}`
-
-                //TESTING 
                 const removeBook = document.createElement('btn')
                 removeBook.innerHTML = '<i class="large material-icons" style="font-size:small">delete</i>'
                 removeBook.addEventListener('click', (e) => {
@@ -104,8 +102,6 @@ const renderOwnedBooksPage = () => {
                   btn.remove()
                   removeBook.remove()
                 })
-                //TESTING
-
                 const btn = document.createElement('btn')
                 btn.innerHTML = '<button type="submit" style="background-color:cyan;color=black;float="right">Submit</button>'
                 btn.addEventListener('click', (e) => {
