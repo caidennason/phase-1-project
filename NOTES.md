@@ -19,26 +19,26 @@
         * A user can comment on the book they want to read (submit)
         * A user can delete the book (click)
         * A user can delete the books they've searched (click)
-        * A user can hover over the link of the book they searched and see the webpage (mouseover)
 
 ### Step 4: Come up with an MVP (This should be the minimum to pass the project -- the essentials)
 
     * Form to submit book title
     * Form to submit book author
-    * Form to submit month finished
-    * Buttons to like or dislike book
+    * Buttons to like book
     * Button to delete book
+    * Button to show whether you own the book
+    * Submit form for comments on books
 
 ### Step 5: Listing out your stretch goals
     * These should come after graduation
     * Where to buy the ones I want/how much they cost
     * Recommendations for books based on ones I've read
-    * Form to comment on book
-    * Button to edit book
+    * Button to edit book comments
+    * Mouseover to show what the link is
+    * Multiple comments on books
 
 ### Things to think about/anticipated problems to solve
     * Search in the API isn't great unless you use advanced and look up title + author
-    * 
 
 
 ### Enoch's 3 Questions for Event Listeners -- How to Think of Events
