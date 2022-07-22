@@ -48,13 +48,9 @@ const likedBooksTemplate = () => {
 
 const renderHomePage = () => {
     mainDiv().innerHTML = homePageTemplate()
-    const p = document.createElement('p')
-    p.innerText = 'Track all the books you have read and want to read in 2022.'
-    p.classList = 'center-align'
     const p2 = document.createElement('p')
-    p2.innerText = 'Here\'s a way to track the books you\'ve read this year'
+    p2.innerText = 'Many people set goals for the amount of books they want to read every year. It\'s easy to get behind, or lose track of what you\'ve read (or at least started to read), so here\'s a way to stay on top of your goals!'
     p2.classList = 'center-align'
-    mainDiv().appendChild(p)
     mainDiv().appendChild(p2)
 }
 
@@ -137,12 +133,12 @@ const renderOwnedBooksPage = () => {
                       bookComment.textContent = (e.target[0].value)
                       commentBar.remove()
                     })
-                    const pTest = document.createElement('li')
-                    pTest.innerText = (`${doc.title} by ${doc.author_name}`)
-                    pTag.append(pTest)
-                    pTest.append(heartButton, removeButton)
-                    pTest.append(bookComment)
-                    pTest.append(commentBar)
+                    const bookInformationLine = document.createElement('li')
+                    bookInformationLine.innerText = (`${doc.title} by ${doc.author_name}`)
+                    pTag.append(bookInformationLine)
+                    bookInformationLine.append(heartButton, removeButton)
+                    bookInformationLine.append(bookComment)
+                    bookInformationLine.append(commentBar)
                 })
                 console.log(doc)
                 mainDiv().appendChild(h2)
