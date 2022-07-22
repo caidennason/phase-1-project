@@ -12,7 +12,7 @@
 
 const mainDiv = () => document.getElementById("main-div-link")
 const homePageLink = () => document.getElementById("home-page-link")
-const ownedBooksPageLink = () => document.getElementById('owned-books-link')
+const readBooksPageLink = () => document.getElementById('owned-books-link')
 const wantedBooksPageLink = () => document.getElementById('wanted-books-link')
 const likedBooksPageLink = () => document.getElementById('liked-books-link')
 
@@ -24,7 +24,7 @@ const homePageTemplate = () => {
     `
 }
 
-const ownedBooksPageTemplate = () => {
+const readBooksPageTemplate = () => {
     return `
     <h1>Books I've Read this Year</h1>
 
@@ -54,8 +54,8 @@ const renderHomePage = () => {
     mainDiv().appendChild(p2)
 }
 
-const renderOwnedBooksPage = () => {
-    mainDiv().innerHTML = ownedBooksPageTemplate()
+const renderReadBooksPage = () => {
+    mainDiv().innerHTML = readBooksPageTemplate()
 
     const pTag = document.createElement('p')
     const form = document.createElement('form')
@@ -91,7 +91,6 @@ const renderOwnedBooksPage = () => {
                 const removeBook = document.createElement('btn')
                 removeBook.innerHTML = '<i class="large material-icons" style="font-size:small">delete</i>'
                 removeBook.addEventListener('click', (e) => {
-                  console.log(removeBook.parentNode)
                   h2.remove()
                   li.remove()
                   a.remove()
@@ -140,7 +139,6 @@ const renderOwnedBooksPage = () => {
                     bookInformationLine.append(bookComment)
                     bookInformationLine.append(commentBar)
                 })
-                console.log(doc)
                 mainDiv().appendChild(h2)
                 mainDiv().appendChild(li)
                 mainDiv().appendChild(a)
@@ -189,7 +187,6 @@ const renderWantedBooksPage = () => {
                 const removeBook = document.createElement('btn')
                 removeBook.innerHTML = '<i class="large material-icons" style="font-size:small">delete</i>'
                 removeBook.addEventListener('click', (e) => {
-                  console.log(removeBook.parentNode)
                   h2.remove()
                   li.remove()
                   a.remove()
@@ -214,7 +211,6 @@ const renderWantedBooksPage = () => {
                     removeButton.innerHTML = '<i class="large material-icons" style="font-size:small">delete</i>'
                     removeButton.addEventListener('click', (e) => {
                       e.preventDefault()
-                      console.log(e.target.parentElement.parentElement)
                       e.target.parentElement.parentElement.remove()
                     })
                     const commentBar = document.createElement('form')
@@ -264,10 +260,10 @@ const homePageLinkEvent = () => {
     })
 }
 
-const ownedBooksLinkEvent = () => {
-    ownedBooksPageLink().addEventListener('click', (e) => {
+const readBooksLinkEvent = () => {
+    readBooksPageLink().addEventListener('click', (e) => {
         e.preventDefault()
-        renderOwnedBooksPage()
+        renderReadBooksPage()
     })
 }
 
@@ -290,7 +286,7 @@ const likedBooksLinkEvent = () => {
 document.addEventListener("DOMContentLoaded", (e) => {
   renderHomePage()
   homePageLinkEvent()
-  ownedBooksLinkEvent()
+  readBooksLinkEvent()
   wantedBooksLinkEvent()
   //likedBooksLinkEvent()
   })
